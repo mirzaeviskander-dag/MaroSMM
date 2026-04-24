@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>MARO — SMM Стратегия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink: #1A1714;
+  --cream: #F5EFE3;
+  --gold: #C4A96A;
+  --gold-light: #E8D5A8;
+  --walnut: #8B7355;
+  --linen: #EAE0CC;
+  --smoke: #6B6459;
+  --white: #FDFAF5;
+  --red-accent: #8B2E1A;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Jost', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-weight: 300;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  border-bottom: 0.5px solid rgba(196,169,106,0.25);
+  padding: 0 0 0 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  display: flex;
+  gap: 0;
+}
+.top-nav::-webkit-scrollbar { display: none; }
+.nav-item {
+  flex-shrink: 0;
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-item.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+/* ── SECTIONS ── */
+.section { display: none; animation: fadeIn 0.3s ease; }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── COVER ── */
+.cover {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 28px 40px;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(196,169,106,0.12);
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: 60px; left: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(196,169,106,0.08);
+}
+.cover-eyebrow {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.cover-middle { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 60px 0; }
+.cover-title {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 0.95;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+.cover-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.cover-subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--smoke);
+  line-height: 1.7;
+}
+.cover-line {
+  width: 40px;
+  height: 0.5px;
+  background: var(--gold);
+  margin: 24px 0;
+}
+.cover-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.cover-meta-left { font-size: 11px; color: var(--smoke); line-height: 1.6; }
+.cover-meta-right {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+/* ── PAGE WRAPPER ── */
+.page { padding: 32px 24px 60px; }
+
+/* ── SECTION HEADER ── */
+.sec-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.sec-heading {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--cream);
+  margin-bottom: 28px;
+}
+.sec-heading em { font-style: italic; color: var(--gold); }
+
+/* ── DIVIDER ── */
+.rule {
+  border: none;
+  border-top: 0.5px solid rgba(196,169,106,0.2);
+  margin: 28px 0;
+}
+
+/* ── QUOTE BLOCK ── */
+.quote-block {
+  border-left: 2px solid var(--gold);
+  padding: 16px 20px;
+  margin: 0 0 28px;
+  background: rgba(196,169,106,0.05);
+}
+.quote-block p {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.45;
+}
+
+/* ── CARDS ── */
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(196,169,106,0.2);
+  border-radius: 2px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+.card-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.card p {
+  font-size: 13px;
+  color: rgba(245,239,227,0.6);
+  line-height: 1.65;
+}
+
+/* ── VALUE ROWS ── */
+.val-item { display: flex; gap: 14px; margin-bottom: 20px; align-items: flex-start; }
+.val-num {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: 0.5;
+  line-height: 1;
+  min-width: 32px;
+  margin-top: -2px;
+}
+.val-body h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 4px;
+}
+.val-body p { font-size: 13px; color: rgba(245,239,227,0.55); line-height: 1.6; }
+
+/* ── AUDIENCE CARDS ── */
+.aud-card {
+  border: 0.5px solid rgba(196,169,106,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.aud-header {
+  background: rgba(196,169,106,0.08);
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+.aud-header h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.2;
+}
+.aud-tag {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 1px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.tag-b2c { background: rgba(196,169,106,0.2); color: var(--gold); }
+.tag-b2b { background: rgba(139,115,85,0.3); color: var(--gold-light); }
+.aud-body { padding: 14px 18px; }
+.aud-body p { font-size: 12.5px; color: rgba(245,239,227,0.55); line-height: 1.6; margin-bottom: 10px; }
+.aud-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.aud-col-label { font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-bottom: 4px; }
+.aud-col-text { font-size: 12px; color: rgba(245,239,227,0.5); line-height: 1.55; }
+
+/* ── VISUAL PALETTE ── */
+.palette-row { display: flex; gap: 6px; margin: 12px 0; }
+.swatch {
+  flex: 1;
+  height: 44px;
+  border-radius: 1px;
+  display: flex;
+  align-items: flex-end;
+  padding: 4px 5px;
+}
+.swatch span { font-size: 8px; letter-spacing: 0.06em; opacity: 0.7; text-transform: uppercase; }
+
+/* ── RUBRICS ── */
+.rubric-item {
+  display: flex;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 0.5px solid rgba(196,169,106,0.12);
+  align-items: flex-start;
+}
+.rubric-pct {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 300;
+  min-width: 64px;
+  line-height: 1;
+  margin-top: -2px;
+}
+.rubric-body h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 5px;
+}
+.rubric-body p { font-size: 12.5px; color: rgba(245,239,227,0.5); line-height: 1.6; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.tag {
+  font-size: 10px;
+  color: rgba(196,169,106,0.7);
+  border: 0.5px solid rgba(196,169,106,0.25);
+  padding: 3px 8px;
+  border-radius: 1px;
+}
+
+/* ── CONTENT PLAN ── */
+.month-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.month-badge {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 1px;
+}
+.m1 { background: rgba(196,169,106,0.15); color: var(--gold); }
+.m2 { background: rgba(139,115,85,0.2); color: var(--gold-light); }
+.m3 { background: rgba(139,46,26,0.2); color: #D4856A; }
+.month-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cream);
+}
+.month-desc { font-size: 12px; color: rgba(245,239,227,0.45); margin-bottom: 16px; line-height: 1.6; }
+.week-item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+  align-items: start;
+}
+.week-num {
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(196,169,106,0.15);
+  border-radius: 1px;
+  height: 44px;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.week-num span:first-child { font-size: 8px; color: var(--smoke); letter-spacing: 0.08em; text-transform: uppercase; }
+.week-num span:last-child { font-family: var(--font-display); font-size: 18px; font-weight: 300; color: var(--gold); }
+.week-body h5 { font-family: var(--font-display); font-size: 16px; font-weight: 400; color: var(--cream); margin-bottom: 3px; }
+.week-body p { font-size: 12px; color: rgba(245,239,227,0.45); line-height: 1.55; }
+
+/* ── ARC ── */
+.arc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 24px; }
+.arc-card {
+  background: rgba(255,255,255,0.03);
+  border: 0.5px solid rgba(196,169,106,0.15);
+  border-radius: 1px;
+  padding: 14px 10px;
+  text-align: center;
+}
+.arc-num { font-family: var(--font-display); font-size: 28px; font-weight: 300; color: var(--gold); opacity: 0.4; line-height: 1; margin-bottom: 6px; }
+.arc-title { font-size: 10px; font-weight: 500; color: var(--cream); opacity: 0.7; line-height: 1.4; margin-bottom: 4px; letter-spacing: 0.02em; }
+.arc-sub { font-size: 10px; color: rgba(245,239,227,0.35); line-height: 1.4; }
+
+/* ── PACKAGES ── */
+.pkg {
+  border: 0.5px solid rgba(196,169,106,0.25);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.pkg-header {
+  padding: 20px 20px 16px;
+  position: relative;
+}
+.pkg-1 .pkg-header { background: rgba(196,169,106,0.07); }
+.pkg-2 .pkg-header { background: rgba(139,46,26,0.1); border-color: rgba(212,133,106,0.3); }
+.pkg-name {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.pkg-tagline { font-size: 11px; color: rgba(245,239,227,0.5); letter-spacing: 0.04em; }
+.pkg-price-block { margin-top: 14px; }
+.pkg-price {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+.pkg-price-note { font-size: 10px; color: rgba(245,239,227,0.4); margin-top: 3px; letter-spacing: 0.04em; }
+.pkg-body { padding: 16px 20px 20px; }
+.pkg-subtitle { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin: 14px 0 8px; }
+.pkg-subtitle:first-child { margin-top: 0; }
+.pkg-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+  align-items: flex-start;
+}
+.pkg-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.5;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.pkg-item-text { font-size: 12.5px; color: rgba(245,239,227,0.6); line-height: 1.55; }
+.pkg-item-text strong { color: rgba(245,239,227,0.85); font-weight: 400; }
+.pkg-reel-types { margin-top: 6px; }
+.reel-type {
+  background: rgba(255,255,255,0.04);
+  border-left: 2px solid rgba(196,169,106,0.3);
+  padding: 8px 12px;
+  margin-bottom: 6px;
+}
+.reel-type-name { font-size: 11px; font-weight: 500; color: var(--cream); opacity: 0.75; margin-bottom: 2px; }
+.reel-type-desc { font-size: 11px; color: rgba(245,239,227,0.4); line-height: 1.5; }
+.market-note {
+  background: rgba(255,255,255,0.03);
+  border: 0.5px solid rgba(196,169,106,0.15);
+  border-radius: 2px;
+  padding: 16px 18px;
+  margin-top: 20px;
+}
+.market-note-label { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--smoke); margin-bottom: 10px; }
+.market-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 0.5px solid rgba(196,169,106,0.08); }
+.market-row:last-child { border-bottom: none; }
+.market-service { font-size: 12px; color: rgba(245,239,227,0.5); }
+.market-price { font-size: 12px; color: var(--gold); font-weight: 400; }
+.pkg-2 .pkg-price { color: #D4856A; }
+
+/* ── REFS ── */
+.ref-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 0.5px solid rgba(196,169,106,0.1);
+  align-items: flex-start;
+}
+.ref-idx {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: 0.3;
+  min-width: 28px;
+  line-height: 1;
+}
+.ref-body h4 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 3px;
+}
+.ref-body p { font-size: 12px; color: rgba(245,239,227,0.45); line-height: 1.55; margin-bottom: 4px; }
+.ref-handle { font-size: 10px; color: var(--gold); opacity: 0.6; font-style: italic; }
+.anti-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.anti-tag {
+  font-size: 10px;
+  color: rgba(139,46,26,0.9);
+  border: 0.5px solid rgba(139,46,26,0.35);
+  padding: 4px 9px;
+  border-radius: 1px;
+}
+
+/* ── KPI ── */
+.kpi-period {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+.kpi-card {
+  background: rgba(255,255,255,0.03);
+  border: 0.5px solid rgba(196,169,106,0.15);
+  border-radius: 1px;
+  padding: 14px 12px;
+}
+.kpi-num { font-family: var(--font-display); font-size: 28px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.kpi-text { font-size: 11px; color: rgba(245,239,227,0.45); line-height: 1.4; }
+.task-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+.task-n {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: 0.4;
+  min-width: 24px;
+  line-height: 1;
+  margin-top: 1px;
+}
+.task-body h5 { font-size: 13px; font-weight: 400; color: var(--cream); margin-bottom: 2px; letter-spacing: 0.01em; }
+.task-body p { font-size: 12px; color: rgba(245,239,227,0.45); line-height: 1.55; }
+
+/* ── GRID 2 ── */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* ── PRODUCT LABEL ── */
+.prod-label {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 1px;
+  margin-bottom: 10px;
+}
+.p-shkaf { background: rgba(196,169,106,0.12); color: var(--gold); }
+.p-divan { background: rgba(139,115,85,0.2); color: var(--gold-light); }
+.p-inter { background: rgba(139,46,26,0.15); color: #D4856A; }
+
+/* ── VISUAL GRID ── */
+.vis-card {
+  background: rgba(255,255,255,0.03);
+  border: 0.5px solid rgba(196,169,106,0.15);
+  border-radius: 1px;
+  padding: 16px;
+  margin-bottom: 10px;
+}
+.vis-card h4 { font-family: var(--font-display); font-size: 17px; font-weight: 400; color: var(--cream); margin-bottom: 5px; }
+.vis-card p { font-size: 12px; color: rgba(245,239,227,0.45); line-height: 1.6; }
+.vis-card .card-label { margin-bottom: 6px; }
+
+.chip-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.chip { font-size: 10px; color: rgba(196,169,106,0.65); border: 0.5px solid rgba(196,169,106,0.2); padding: 3px 8px; border-radius: 1px; }
+
+/* ── FOOTER SPACER ── */
+.footer-space { height: 40px; }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="nav-item active" onclick="show('cover')">Обложка</div>
+  <div class="nav-item" onclick="show('brand')">Бренд</div>
+  <div class="nav-item" onclick="show('audience')">Аудитории</div>
+  <div class="nav-item" onclick="show('visual')">Визуал</div>
+  <div class="nav-item" onclick="show('rubrics')">Рубрики</div>
+  <div class="nav-item" onclick="show('plan')">План</div>
+  <div class="nav-item" onclick="show('visual-refs')">Направления</div>
+  <div class="nav-item" onclick="show('packages')">Пакеты</div>
+</nav>
+
+<!-- ══════════════════════════════════
+     COVER
+══════════════════════════════════ -->
+<div class="section active" id="cover">
+<div class="cover">
+  <div class="cover-eyebrow">SMM — Стратегия 2025</div>
+  <div class="cover-middle">
+    <div class="cover-title">MARO<br><em>Wood</em></div>
+    <div class="cover-line"></div>
+    <div class="cover-subtitle">
+      Упаковка бренда · Контент-стратегия<br>
+      Instagram · Telegram · Серийный запуск
+    </div>
+  </div>
+  <div class="cover-meta">
+    <div class="cover-meta-left">
+      Дагестанское ремесло<br>мирового уровня<br>
+      <span style="color:var(--gold);opacity:0.6">20+ лет · mirmaro.ru</span>
+    </div>
+    <div class="cover-meta-right">3 месяца<br>к запуску</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════
+     BRAND
+══════════════════════════════════ -->
+<div class="section" id="brand">
+<div class="page">
+  <div class="sec-eyebrow">Бренд</div>
+  <div class="sec-heading">Ценности<br>и <em>позиция</em></div>
+
+  <div class="quote-block">
+    <p>"Мы превращаем живой материал в объекты, которые переживут несколько поколений — с корнями в Дагестане и амбициями мирового уровня."</p>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Позиционирование одной строкой</div>
+    <h3>MARO — мебель ручной работы для тех, кто не идёт на компромисс</h3>
+    <p>Шкафы, диваны и комплексные интерьеры с характером. Дагестан → весь мир.</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="sec-eyebrow" style="margin-bottom:16px">Нарратив 3 месяцев</div>
+  <div class="arc-grid">
+    <div class="arc-card">
+      <div class="arc-num">1</div>
+      <div class="arc-title">Смотрите, как мы делаем</div>
+      <div class="arc-sub">Мастерство и процесс</div>
+    </div>
+    <div class="arc-card">
+      <div class="arc-num">2</div>
+      <div class="arc-title">Вот что мы сделали для вас</div>
+      <div class="arc-sub">Кейсы и доверие</div>
+    </div>
+    <div class="arc-card">
+      <div class="arc-num">3</div>
+      <div class="arc-title">Встречайте серию</div>
+      <div class="arc-sub">Прогрев → запуск</div>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="sec-eyebrow" style="margin-bottom:16px">5 ценностей бренда</div>
+
+  <div class="val-item">
+    <div class="val-num">01</div>
+    <div class="val-body">
+      <h4>Мастерство без компромиссов</h4>
+      <p>20+ лет — это накопленный язык работы с деревом. Каждый мастер — носитель знания, которое нельзя купить.</p>
+    </div>
+  </div>
+  <div class="val-item">
+    <div class="val-num">02</div>
+    <div class="val-body">
+      <h4>Живой материал</h4>
+      <p>Дерево дышит, стареет, становится красивее. Каждое изделие несёт характер конкретного дерева.</p>
+    </div>
+  </div>
+  <div class="val-item">
+    <div class="val-num">03</div>
+    <div class="val-body">
+      <h4>Индивидуальность как стандарт</h4>
+      <p>Даже в серийной линейке нет двух одинаковых изделий. Это суть бренда, а не ограничение.</p>
+    </div>
+  </div>
+  <div class="val-item">
+    <div class="val-num">04</div>
+    <div class="val-body">
+      <h4>Корни как сила</h4>
+      <p>Дагестан — не ограничение, а источник. Орнамент, характер, честность ремесла — конкурентное преимущество.</p>
+    </div>
+  </div>
+  <div class="val-item">
+    <div class="val-num">05</div>
+    <div class="val-body">
+      <h4>Долгосрочное мышление</h4>
+      <p>Клиент покупает не шкаф — он покупает объект, который останется в доме на десятилетия.</p>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="sec-eyebrow" style="margin-bottom:14px">Язык по продуктам</div>
+  <div class="card">
+    <div class="prod-label p-shkaf">Шкаф / Гардероб</div>
+    <h3>Язык ума</h3>
+    <p>Функция, система, качество фурнитуры, долговечность. Показывать: до/после, механизмы, решение конкретной задачи.</p>
+  </div>
+  <div class="card">
+    <div class="prod-label p-divan">Диван / Мягкая мебель</div>
+    <h3>Язык тела</h3>
+    <p>Тактильность, комфорт, ощущение дома. Показывать: фактура ткани крупным планом, человек в кадре, тёплый свет.</p>
+  </div>
+  <div class="card">
+    <div class="prod-label p-inter">Комплексный интерьер</div>
+    <h3>Язык мечты</h3>
+    <p>Эмоция трансформации. Показывать: весь проект целиком, история клиента, масштаб работы.</p>
+  </div>
+
+  <div class="footer-space"></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════
+     AUDIENCE
+══════════════════════════════════ -->
+<div class="section" id="audience">
+<div class="page">
+  <div class="sec-eyebrow">Аудитории</div>
+  <div class="sec-heading">Кому<br><em>говорим</em></div>
+
+  <div class="card" style="margin-bottom:20px; background:rgba(196,169,106,0.05)">
+    <p style="font-size:12.5px; color:rgba(245,239,227,0.6); line-height:1.65">
+      Стратегия — параллельная работа на B2C и B2B. Один правильно снятый Reels работает сразу на обе аудитории: частный клиент видит мечту, дизайнер — надёжного партнёра.
+    </p>
+  </div>
+
+  <div class="aud-card">
+    <div class="aud-header">
+      <h3>Частный клиент с высоким доходом</h3>
+      <span class="aud-tag tag-b2c">B2C · A</span>
+    </div>
+    <div class="aud-body">
+      <p>35–55 лет. Строит дом или делает ремонт. Устал от масс-маркета. Хочет эксклюзив и историю вещи. Готов ждать и платить за качество.</p>
+      <div class="aud-grid">
+        <div>
+          <div class="aud-col-label">Боль</div>
+          <div class="aud-col-text">Везде одно и то же. Хочу чтобы дом рассказывал историю.</div>
+        </div>
+        <div>
+          <div class="aud-col-label">Контент</div>
+          <div class="aud-col-text">Интерьеры клиентов. До/после. Истории проектов.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="aud-card">
+    <div class="aud-header">
+      <h3>Молодая семья / Новосёл</h3>
+      <span class="aud-tag tag-b2c">B2C · Б</span>
+    </div>
+    <div class="aud-body">
+      <p>28–40 лет. Первая квартира или ремонт. Ищет качество между IKEA и настоящим люксом. Идеальная аудитория для серийной линейки.</p>
+      <div class="aud-grid">
+        <div>
+          <div class="aud-col-label">Боль</div>
+          <div class="aud-col-text">Масс-маркет надоел, но не понимает что выбрать дальше.</div>
+        </div>
+        <div>
+          <div class="aud-col-label">Контент</div>
+          <div class="aud-col-text">Понятные цены. Сроки. Реальные квартиры.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="aud-card">
+    <div class="aud-header">
+      <h3>Дизайнер / Архитектор</h3>
+      <span class="aud-tag tag-b2b">B2B · В</span>
+    </div>
+    <div class="aud-body">
+      <p>28–45 лет. Ищет надёжного производителя для проектов. Нужна точность, кастомизация и стабильное качество. Приводит состоятельных клиентов потоком.</p>
+      <div class="aud-grid">
+        <div>
+          <div class="aud-col-label">Боль</div>
+          <div class="aud-col-text">Производители срывают сроки, качество нестабильное.</div>
+        </div>
+        <div>
+          <div class="aud-col-label">Контент</div>
+          <div class="aud-col-text">Технические детали. Кейсы. Партнёрская программа.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="aud-card">
+    <div class="aud-header">
+      <h3>Девелопер / Отель / Ресторан</h3>
+      <span class="aud-tag tag-b2b">B2B · Г</span>
+    </div>
+    <div class="aud-body">
+      <p>Создаёт уникальную атмосферу объекта. Нужен партнёр на весь интерьер. Долгий цикл, крупный бюджет.</p>
+      <div class="aud-grid">
+        <div>
+          <div class="aud-col-label">Боль</div>
+          <div class="aud-col-text">Нет производства для нестандартных объёмов и форм.</div>
+        </div>
+        <div>
+          <div class="aud-col-label">Контент</div>
+          <div class="aud-col-text">Коммерческие объекты. Масштаб. Цифры и сроки.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-space"></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════
+     VISUAL
+══════════════════════════════════ -->
+<div class="section" id="visual">
+<div class="page">
+  <div class="sec-eyebrow">Визуальный код</div>
+  <div class="sec-heading">Как<br><em>выглядим</em></div>
+
+  <div class="quote-block">
+    <p>"Тёплая тактильная роскошь без помпезности. Kinfolk × Architectural Digest × Дагестан."</p>
+  </div>
+
+  <div class="sec-eyebrow" style="margin-bottom:10px">Цветовая палитра</div>
+  <div class="palette-row">
+    <div class="swatch" style="background:#1C1A17"><span style="color:var(--cream)">графит</span></div>
+    <div class="swatch" style="background:#F0E8D5"><span style="color:var(--ink)">слонов.</span></div>
+    <div class="swatch" style="background:#C4A96A"><span style="color:var(--ink)">золото</span></div>
+    <div class="swatch" style="background:#8B7355"><span style="color:var(--cream)">орех</span></div>
+    <div class="swatch" style="background:#A0522D"><span style="color:var(--cream)">теракота</span></div>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="vis-card">
+    <div class="card-label">Свет</div>
+    <h4>Тёплый боковой</h4>
+    <p>Золотой час или направленный свет с гелевым фильтром. Подчёркивает текстуру и объём дерева. Никакого холодного студийного света.</p>
+  </div>
+  <div class="vis-card">
+    <div class="card-label">Локация</div>
+    <h4>Только живые пространства</h4>
+    <p>Реальные интерьеры клиентов, мастерская, природа. Белый задник — запрещён. Контекст создаёт желание.</p>
+  </div>
+  <div class="vis-card">
+    <div class="card-label">Кадр</div>
+    <h4>Детали как главный герой</h4>
+    <p>Стыки, фактуры, фурнитура, ткань обивки, рисунок дерева. Конкуренты этого не показывают — именно поэтому это надо показывать.</p>
+  </div>
+  <div class="vis-card">
+    <div class="card-label">Люди</div>
+    <h4>Мастера и клиенты в кадре</h4>
+    <p>Не модели — реальные люди. Мастер за работой, клиент в своём новом пространстве. Лица строят эмоциональную связь.</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="sec-eyebrow" style="margin-bottom:14px">Ритм сетки Instagram</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:10px">
+    <div style="background:rgba(255,255,255,0.04); border:0.5px solid rgba(196,169,106,0.15); border-radius:1px; padding:14px 10px; text-align:center">
+      <div style="font-family:var(--font-display); font-size:24px; font-weight:300; color:var(--gold); opacity:0.5">1</div>
+      <div style="font-size:10px; color:rgba(245,239,227,0.5); margin-top:4px; line-height:1.4">Деталь<br>крупно</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.04); border:0.5px solid rgba(196,169,106,0.15); border-radius:1px; padding:14px 10px; text-align:center">
+      <div style="font-family:var(--font-display); font-size:24px; font-weight:300; color:var(--gold); opacity:0.5">2</div>
+      <div style="font-size:10px; color:rgba(245,239,227,0.5); margin-top:4px; line-height:1.4">Интерьер<br>широко</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.04); border:0.5px solid rgba(196,169,106,0.15); border-radius:1px; padding:14px 10px; text-align:center">
+      <div style="font-family:var(--font-display); font-size:24px; font-weight:300; color:var(--gold); opacity:0.5">3</div>
+      <div style="font-size:10px; color:rgba(245,239,227,0.5); margin-top:4px; line-height:1.4">Процесс<br>или люди</div>
+    </div>
+  </div>
+  <p style="font-size:11px; color:rgba(245,239,227,0.35); line-height:1.6">Цикл из 3 постов повторяется — создаёт визуальный ритм при просмотре профиля. Единый тёплый LUT на все фото.</p>
+
+  <div class="rule"></div>
+
+  <div class="sec-eyebrow" style="margin-bottom:10px">Стиль Reels</div>
+  <div class="chip-row">
+    <span class="chip">9:16 вертикаль</span>
+    <span class="chip">15–30 сек охват</span>
+    <span class="chip">60–90 сек глубина</span>
+    <span class="chip">живой звук</span>
+    <span class="chip">субтитры всегда</span>
+    <span class="chip">без стоковой музыки</span>
+    <span class="chip">slow-mo на деталях</span>
+    <span class="chip">первые 2 сек — крюк</span>
+    <span class="chip">без лого в начале</span>
+  </div>
+
+  <div class="footer-space"></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════
+     RUBRICS
+══════════════════════════════════ -->
+<div class="section" id="rubrics">
+<div class="page">
+  <div class="sec-eyebrow">Рубрики</div>
+  <div class="sec-heading">О чём<br><em>говорим</em></div>
+
+  <div class="rubric-item">
+    <div class="rubric-pct" style="color:var(--gold)">30%</div>
+    <div class="rubric-body">
+      <h4>Продукт в пространстве</h4>
+      <p>Готовые изделия в реальных интерьерах. Подача как в мировых каталогах. Три потока: шкафы, диваны, проекты.</p>
+      <div class="tags">
+        <span class="tag">до/после гардеробной</span>
+        <span class="tag">диван в интерьере</span>
+        <span class="tag">комплексный проект</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubric-item">
+    <div class="rubric-pct" style="color:var(--walnut)">30%</div>
+    <div class="rubric-body">
+      <h4>Процесс создания</h4>
+      <p>Главный магнит бренда. Показываем то, что конкуренты скрывают — именно это строит доверие и B2C и B2B.</p>
+      <div class="tags">
+        <span class="tag">шкаф с нуля</span>
+        <span class="tag">обивка дивана</span>
+        <span class="tag">инструменты</span>
+        <span class="tag">сборка на объекте</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubric-item">
+    <div class="rubric-pct" style="color:rgba(196,169,106,0.5)">15%</div>
+    <div class="rubric-body">
+      <h4>Экспертиза</h4>
+      <p>Для дизайнеров и образованных клиентов. Язык профессионала, не маркетолога.</p>
+      <div class="tags">
+        <span class="tag">какое дерево выбрать</span>
+        <span class="tag">массив vs шпон</span>
+        <span class="tag">ткань для дивана</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubric-item">
+    <div class="rubric-pct" style="color:rgba(196,169,106,0.4)">15%</div>
+    <div class="rubric-body">
+      <h4>Люди MARO</h4>
+      <p>Мастера с историями + клиенты с результатом. Самый виральный тип контента.</p>
+      <div class="tags">
+        <span class="tag">мастер и его 20 лет</span>
+        <span class="tag">клиент дома</span>
+        <span class="tag">художник за эскизом</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubric-item" style="border-bottom:none">
+    <div class="rubric-pct" style="color:rgba(196,169,106,0.3)">10%</div>
+    <div class="rubric-body">
+      <h4>Корни и культура</h4>
+      <p>Дагестан, орнамент, традиции в современном контексте. Работает на PR и уникальность бренда.</p>
+      <div class="tags">
+        <span class="tag">откуда этот узор</span>
+        <span class="tag">история материала</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-space"></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════
+     PLAN
+══════════════════════════════════ -->
+<div class="section" id="plan">
+<div class="page">
+  <div class="sec-eyebrow">Контент-план</div>
+  <div class="sec-heading">3 месяца<br>к <em>запуску</em></div>
+
+  <!-- M1 -->
+  <div class="month-label">
+    <span class="month-badge m1">Месяц 1</span>
+    <span class="month-name">Упаковка</span>
+  </div>
+  <p class="month-desc">Переоформить страницу, показать масштаб и душу, заявить о себе как о бренде мирового уровня.</p>
+
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>1</span></div>
+    <div class="week-body">
+      <h5>Манифест + новая упаковка</h5>
+      <p>Reels-манифест с голосом основателя. Новое bio, 6 highlights с едиными обложками. Карточка "Кто такие MARO".</p>
+    </div>
+  </div>
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>2</span></div>
+    <div class="week-body">
+      <h5>Серия "Люди MARO"</h5>
+      <p>3 поста — 3 мастера. Фото + история. Reels: руки за работой со звуком производства.</p>
+    </div>
+  </div>
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>3</span></div>
+    <div class="week-body">
+      <h5>Один проект — полная история</h5>
+      <p>Карусель 10 слайдов: эскиз → материал → производство → установка → интерьер. Telegram: лонгрид.</p>
+    </div>
+  </div>
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>4</span></div>
+    <div class="week-body">
+      <h5>Экспертиза по материалам</h5>
+      <p>Карусель "Какое дерево для гардеробной" или "Как выбрать ткань для дивана". Reels: сравнение вживую.</p>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- M2 -->
+  <div class="month-label">
+    <span class="month-badge m2">Месяц 2</span>
+    <span class="month-name">Доверие</span>
+  </div>
+  <p class="month-desc">Кейсы, дизайнеры, культура. Начало прогрева к запуску серии.</p>
+
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>5</span></div>
+    <div class="week-body">
+      <h5>Коллаборация с дизайнером</h5>
+      <p>Совместный пост, взгляд дизайнера на работу с MARO. Взаимный репост — выход на новую аудиторию.</p>
+    </div>
+  </div>
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>6</span></div>
+    <div class="week-body">
+      <h5>Клиентская история — диван</h5>
+      <p>Кейс: задача, процесс, результат. Фото в реальном доме клиента. Reels: доставка и реакция.</p>
+    </div>
+  </div>
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>7</span></div>
+    <div class="week-body">
+      <h5>Культурный код MARO</h5>
+      <p>"Откуда этот орнамент". Reels: мастер рисует узор от руки — потом он появляется на дверце шкафа.</p>
+    </div>
+  </div>
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>8</span></div>
+    <div class="week-body">
+      <h5>MARO vs мир</h5>
+      <p>Карусель: качество MARO vs европейские аналоги по конкретным параметрам. Первые намёки на новинку.</p>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- M3 -->
+  <div class="month-label">
+    <span class="month-badge m3">Месяц 3</span>
+    <span class="month-name">Запуск</span>
+  </div>
+  <p class="month-desc">Ажиотаж вокруг серийной линейки. Конвертируем прогретую аудиторию.</p>
+
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>9</span></div>
+    <div class="week-body">
+      <h5>Интрига нарастает</h5>
+      <p>Stories: вопросы аудитории о желаемом. Reels: первые размытые кадры новых изделий. Намёки без раскрытия.</p>
+    </div>
+  </div>
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>10</span></div>
+    <div class="week-body">
+      <h5>Масштаб производства</h5>
+      <p>Reels: обзор всего производства. "Вот почему мы можем делать серию без потери качества."</p>
+    </div>
+  </div>
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>11</span></div>
+    <div class="week-body">
+      <h5>Анонс серийной линейки</h5>
+      <p>Полный запуск: карусель, Reels-презентация, Stories с ценами. Telegram: первым — эксклюзивно.</p>
+    </div>
+  </div>
+  <div class="week-item">
+    <div class="week-num"><span>нед</span><span>12</span></div>
+    <div class="week-body">
+      <h5>Первые заказы и отзывы</h5>
+      <p>Показываем первые заказы. Stories: Q&A по линейке. Telegram: итог квартала и анонс следующего этапа.</p>
+    </div>
+  </div>
+
+  <div class="footer-space"></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════
+     VISUAL DIRECTIONS
+══════════════════════════════════ -->
+<div class="section" id="visual-refs">
+<div class="page">
+  <div class="sec-eyebrow">Направления съёмки</div>
+  <div class="sec-heading">Как<br><em>снимаем</em></div>
+
+  <div class="vis-card">
+    <div class="card-label">Шкафы / Гардеробные</div>
+    <h4>Архитектурный интерьер</h4>
+    <p>Широкий план, правильная экспозиция, мебель как часть архитектуры пространства. Чистые линии, дерево в контексте.</p>
+  </div>
+  <div class="vis-card">
+    <div class="card-label">Диваны / Мягкая мебель</div>
+    <h4>Тёплая тактильность</h4>
+    <p>Крупные планы ткани и фактур, живой человек в кадре, тёплый боковой свет. Ощущение что хочется потрогать.</p>
+  </div>
+  <div class="vis-card">
+    <div class="card-label">Производственный процесс</div>
+    <h4>Документальный стиль</h4>
+    <p>Живые нефильтрованные моменты мастерской. Руки, инструменты, материал. Никакой постановочности.</p>
+  </div>
+  <div class="vis-card">
+    <div class="card-label">Комплексные проекты</div>
+    <h4>Репортаж объекта</h4>
+    <p>Весь реализованный проект как единое произведение. От детали до общего плана. История пространства целиком.</p>
+  </div>
+  <div class="vis-card">
+    <div class="card-label">Культура и орнамент</div>
+    <h4>Этнический минимализм</h4>
+    <p>Дагестанский орнамент в современном контексте без китча. Традиция как элемент дизайна, не экзотика.</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="sec-eyebrow" style="margin-bottom:12px">Не делаем никогда</div>
+  <div class="anti-tags">
+    <span class="anti-tag">белый студийный фон</span>
+    <span class="anti-tag">стоковые фото</span>
+    <span class="anti-tag">мелкий текст на фото</span>
+    <span class="anti-tag">фильтры Instagram</span>
+    <span class="anti-tag">прайс-листы в ленте</span>
+    <span class="anti-tag">баннеры скидок</span>
+    <span class="anti-tag">коллажи 4-в-1</span>
+    <span class="anti-tag">чужое без подписи</span>
+    <span class="anti-tag">лого в начале Reels</span>
+    <span class="anti-tag">видео без субтитров</span>
+  </div>
+
+  <div class="footer-space"></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════
+     PACKAGES
+══════════════════════════════════ -->
+<div class="section" id="packages">
+<div class="page">
+  <div class="sec-eyebrow">Пакеты работы</div>
+  <div class="sec-heading">Условия<br>и <em>стоимость</em></div>
+
+  <!-- PACKAGE 1 -->
+  <div class="pkg pkg-1">
+    <div class="pkg-header">
+      <div class="pkg-name">Пакет 1</div>
+      <div class="pkg-tagline">Контент и ведение · Production-first</div>
+      <div class="pkg-price-block">
+        <div class="pkg-price">85 000</div>
+        <div class="pkg-price-note">₽ / месяц</div>
+      </div>
+    </div>
+    <div class="pkg-body">
+
+      <div class="pkg-subtitle">Reels — 8 в месяц</div>
+      <div class="pkg-reel-types">
+        <div class="reel-type">
+          <div class="reel-type-name">Эстетика · 3 шт</div>
+          <div class="reel-type-desc">Медленные атмосферные кадры: детали готового изделия, фактуры, интерьер. Минимум монтажа, максимум атмосферы. Съёмка 1–2 часа.</div>
+        </div>
+        <div class="reel-type">
+          <div class="reel-type-name">История изделия · 3 шт</div>
+          <div class="reel-type-desc">Мастер + озвучка + несколько локаций. Процесс от заготовки до финала. Съёмка полдня, монтаж с субтитрами и звуком.</div>
+        </div>
+        <div class="reel-type">
+          <div class="reel-type-name">Обзор проекта · 2 шт</div>
+          <div class="reel-type-desc">Полный реализованный объект: гардеробная, интерьер, диван в пространстве. Съёмка на объекте клиента.</div>
+        </div>
+      </div>
+
+      <div class="pkg-subtitle">Ведение аккаунта</div>
+      <div class="pkg-item">
+        <div class="pkg-dot"></div>
+        <div class="pkg-item-text"><strong>4–6 постов</strong> в месяц — карусели с товарами, фото изделий</div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-dot"></div>
+        <div class="pkg-item-text"><strong>40–60 Stories</strong> в месяц — бэкстейдж, опросы, жизнь производства</div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-dot"></div>
+        <div class="pkg-item-text"><strong>Тексты и хэштеги</strong> ко всем публикациям</div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-dot"></div>
+        <div class="pkg-item-text"><strong>Ответы на комментарии</strong> — ежедневно</div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-dot"></div>
+        <div class="pkg-item-text"><strong>Ежемесячный отчёт</strong> с аналитикой и корректировкой стратегии</div>
+      </div>
+
+      <div class="pkg-subtitle">Первый месяц</div>
+      <div class="pkg-item">
+        <div class="pkg-dot"></div>
+        <div class="pkg-item-text">Упаковка профиля: bio, highlights, единый LUT</div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-dot"></div>
+        <div class="pkg-item-text">SMM-стратегия на 3 месяца</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACKAGE 2 -->
+  <div class="pkg pkg-2" style="border-color:rgba(212,133,106,0.3)">
+    <div class="pkg-header">
+      <div class="pkg-name">Пакет 2</div>
+      <div class="pkg-tagline">Полный продакшн · Команда + блогеры</div>
+      <div class="pkg-price-block">
+        <div class="pkg-price">165 000</div>
+        <div class="pkg-price-note">₽ / месяц</div>
+      </div>
+    </div>
+    <div class="pkg-body">
+
+      <div class="pkg-subtitle">Всё из Пакета 1, плюс:</div>
+      <div class="pkg-item">
+        <div class="pkg-dot" style="background:#D4856A"></div>
+        <div class="pkg-item-text"><strong>+4 Reels повышенной сложности</strong> — актрисы, реквизит, несколько локаций</div>
+      </div>
+
+      <div class="pkg-subtitle">Команда и актёры</div>
+      <div class="pkg-item">
+        <div class="pkg-dot" style="background:#D4856A"></div>
+        <div class="pkg-item-text"><strong>Актрисы / модели</strong> — 1–2 съёмочных дня в месяц. Съёмка дивана с человеком, образы в интерьере.</div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-dot" style="background:#D4856A"></div>
+        <div class="pkg-item-text"><strong>Подготовка площадки</strong> — стайлинг, реквизит, флористика для съёмок.</div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-dot" style="background:#D4856A"></div>
+        <div class="pkg-item-text"><strong>Организация съёмок</strong> у клиентов — логистика, согласования, подготовка.</div>
+      </div>
+
+      <div class="pkg-subtitle">Работа с блогерами</div>
+      <div class="pkg-item">
+        <div class="pkg-dot" style="background:#D4856A"></div>
+        <div class="pkg-item-text"><strong>2–3 интеграции</strong> с блогерами в месяц — подбор, бриф, сопровождение. Бюджет на блогеров оплачивается отдельно.</div>
+      </div>
+
+      <div class="pkg-subtitle">Фотопродакшн</div>
+      <div class="pkg-item">
+        <div class="pkg-dot" style="background:#D4856A"></div>
+        <div class="pkg-item-text"><strong>Предметная фотосессия изделий</strong> — 1 день, 15–20 финальных кадров для ленты и сайта.</div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-dot" style="background:#D4856A"></div>
+        <div class="pkg-item-text"><strong>Lifestyle-съёмка</strong> в интерьере — 1 день, 30+ кадров с актрисами и стайлингом.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT'S SEPARATE -->
+  <div class="card" style="border-color:rgba(196,169,106,0.15)">
+    <div class="card-label">Не входит в пакеты — оплачивается отдельно</div>
+    <div class="pkg-item" style="margin-top:8px">
+      <div class="pkg-dot"></div>
+      <div class="pkg-item-text">Рекламный бюджет (таргет)</div>
+    </div>
+    <div class="pkg-item">
+      <div class="pkg-dot"></div>
+      <div class="pkg-item-text">Гонорары блогеров</div>
+    </div>
+    <div class="pkg-item">
+      <div class="pkg-dot"></div>
+      <div class="pkg-item-text">Командировочные при выезде к клиенту</div>
+    </div>
+    <div class="pkg-item">
+      <div class="pkg-dot"></div>
+      <div class="pkg-item-text">Реквизит и флористика сверх нормы</div>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="sec-eyebrow" style="margin-bottom:14px">Задачи клиенту до старта</div>
+  <div class="task-item">
+    <div class="task-n">1</div>
+    <div class="task-body">
+      <h5>Съёмочный день на производстве</h5>
+      <p>1 полный день: процесс, мастера, материалы, цеха. Фундамент контента на 2 месяца.</p>
+    </div>
+  </div>
+  <div class="task-item">
+    <div class="task-n">2</div>
+    <div class="task-body">
+      <h5>Съёмка 3–5 реализованных объектов</h5>
+      <p>У клиентов дома. Нужны согласия клиентов и доступ.</p>
+    </div>
+  </div>
+  <div class="task-item">
+    <div class="task-n">3</div>
+    <div class="task-body">
+      <h5>Список мастеров для серии "Люди MARO"</h5>
+      <p>5–7 мастеров с согласием на съёмку и краткой историей.</p>
+    </div>
+  </div>
+  <div class="task-item">
+    <div class="task-n">4</div>
+    <div class="task-body">
+      <h5>Список дизайнеров для коллабораций</h5>
+      <p>10–15 дизайнеров/архитекторов, с которыми работал MARO.</p>
+    </div>
+  </div>
+
+  <div class="footer-space"></div>
+</div>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const ids = ['cover','brand','audience','visual','rubrics','plan','visual-refs','packages'];
+  const idx = ids.indexOf(id);
+  if (idx >= 0) document.querySelectorAll('.nav-item')[idx].classList.add('active');
+  const navEl = document.querySelectorAll('.nav-item')[idx];
+  if (navEl) navEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
